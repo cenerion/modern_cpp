@@ -10,11 +10,11 @@
 
 using namespace std;
 
-typedef vector<shared_ptr<Shape>> Collection;
+using Collection = vector<shared_ptr<Shape>>;
 
 bool sortByArea(shared_ptr<Shape> first, shared_ptr<Shape> second)
 {
-    if(first == NULL || second == NULL)
+    if(first == nullptr || second == nullptr)
         return false;
     return (first->getArea() < second->getArea());
 }
@@ -52,7 +52,7 @@ void findFirstShapeMatchingPredicate(const Collection& collection,
                                      std::string info)
 {
     Collection::const_iterator iter = std::find_if(collection.begin(), collection.end(), predicate);
-    if(*iter != NULL)
+    if(*iter != nullptr)
     {
         cout << "First shape matching predicate: " << info << endl;
         (*iter)->print();
@@ -68,7 +68,7 @@ int main()
     Collection shapes;
     shapes.push_back(make_shared<Circle>(2.0));
     shapes.push_back(make_shared<Circle>(3.0));
-    shapes.push_back(NULL);
+    shapes.push_back(nullptr);
     shapes.push_back(make_shared<Circle>(4.0));
     shapes.push_back(make_shared<Rectangle>(10.0, 5.0));
     shapes.push_back(make_shared<Square>(3.0));

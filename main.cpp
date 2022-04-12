@@ -63,6 +63,7 @@ void findFirstShapeMatchingPredicate(const Collection& collection,
     }
 }
 
+
 constexpr int fibonacci(int n)
 {
     if (n == 1 || n == 2)
@@ -76,14 +77,20 @@ int main()
     constexpr int v = fibonacci(45);
     std::cout << v << "\n";
 
-    Collection shapes;
-    shapes.push_back(make_shared<Circle>(2.0));
-    shapes.push_back(make_shared<Circle>(3.0));
-    shapes.push_back(nullptr);
-    shapes.push_back(make_shared<Circle>(4.0));
-    shapes.push_back(make_shared<Rectangle>(10.0, 5.0));
-    shapes.push_back(make_shared<Square>(3.0));
-    shapes.push_back(make_shared<Circle>(4.0));
+    Collection shapes =
+        {
+            make_shared<Circle>(2.0),
+            make_shared<Circle>(3.0),
+            nullptr,
+            make_shared<Circle>(4.0),
+            make_shared<Rectangle>(10.0, 5.0),
+            make_shared<Square>(3.0),
+            make_shared<Circle>(4.0),
+            make_shared<Square>(Color::Red),
+            make_shared<Rectangle>(Color::Green),
+            make_shared<Square>(Color::Blue),
+        };
+
     printCollectionElements(shapes);
 
     cout << "Areas before sort: " << std::endl;

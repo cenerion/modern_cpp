@@ -1,9 +1,11 @@
 #include "Circle.hpp"
 #include <math.h>
 #include <iostream>
+#include "Color.hpp"
 
 Circle::Circle(double r)
-    : r_(r)
+    : Shape(Color::Red),
+       r_(r)
 {}
 
 double Circle::getArea() const

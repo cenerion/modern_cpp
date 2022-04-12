@@ -2,7 +2,8 @@
 #include <iostream>
 
 Rectangle::Rectangle(double x, double y)
-    : x_(x),
+    : Shape(Color::Green),
+      x_(x),
       y_(y)
 {}
 

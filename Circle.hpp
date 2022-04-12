@@ -5,6 +5,7 @@
 class Circle final : public Shape
 {
 public:
+    using Shape::Shape;
     Circle(double r);
     Circle(const Circle & other) = default;
 
@@ -16,5 +17,5 @@ public:
 private:
     Circle() = delete; // doesn't allow to call default constructor
 
-    double r_;
+    double r_{ 1 };
 };

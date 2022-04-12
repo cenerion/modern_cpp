@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <string>
 #include <memory>
+#include <functional>
 #include "Shape.hpp"
 #include "Rectangle.hpp"
 #include "Square.hpp"
@@ -12,26 +13,26 @@ using namespace std;
 
 using Collection = vector<shared_ptr<Shape>>;
 
-bool sortByArea(shared_ptr<Shape> first, shared_ptr<Shape> second)
+auto sortByArea = [](shared_ptr<Shape> first, shared_ptr<Shape> second) -> bool
 {
     if(first == nullptr || second == nullptr)
         return false;
     return (first->getArea() < second->getArea());
-}
+};
 
-bool perimeterBiggerThan20(shared_ptr<Shape> s)
+auto perimeterBiggerThan20 = [](shared_ptr<Shape> s) -> bool
 {
     if(s)
         return (s->getPerimeter() > 20);
     return false;
-}
+};
 
-bool areaLessThan10(shared_ptr<Shape> s)
+auto areaLessThanX = [x = 10](shared_ptr<Shape> s) -> bool
 {
     if(s)
         return (s->getArea() < 10);
     return false;
-}
+};
 
 void printCollectionElements(const Collection& collection)
 {
@@ -48,7 +49,8 @@ void printAreas(const Collection& collection)
 }
 
 void findFirstShapeMatchingPredicate(const Collection& collection,
-                                     bool (*predicate)(shared_ptr<Shape> s),
+                                     //bool (*predicate)(shared_ptr<Shape> s),
+                                     std::function<bool(shared_ptr<Shape> s)> predicate,
                                      std::string info)
 {
     const auto iter = std::find_if(collection.begin(), collection.end(), predicate);
@@ -105,7 +107,7 @@ int main()
     shapes.push_back(square);
 
     findFirstShapeMatchingPredicate(shapes, perimeterBiggerThan20, "perimeter bigger than 20");
-    findFirstShapeMatchingPredicate(shapes, areaLessThan10, "area less than 10");
+    findFirstShapeMatchingPredicate(shapes, areaLessThanX, "area less than 10");
 
     return 0;
 }
